@@ -1,0 +1,12 @@
+1. How the script handles arguments and options:
+
+The script first checks if the number of arguments is enough. Then it processes options starting with -, setting flags like show_line_numbers for -n and invert_match for -v. After parsing options, the script reads the search string and filename. It verifies that the file exists before proceeding to read each line, apply the match logic, and print the correct output.
+
+2. How the structure would change for regex or new options (-i, -c, -l):
+
+If I wanted to support regex patterns, I would directly use grep -E instead of basic grep. To add options like -i (ignore case), -c (count matches), or -l (list matching filenames), I would extend the option parser and introduce new flags to control behavior inside the main loop based on what option is set.
+
+3. Hardest part to implement and why:
+
+The hardest part was handling multiple combinations of options correctly and ensuring that the script behaves similarly to the original grep, especially when using both -n and -v together. Managing argument shifting carefully was tricky to avoid errors.
+
